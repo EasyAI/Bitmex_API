@@ -16,6 +16,19 @@ REAL_BASE = 'https://www.bitmex.com/api/v1'
 TEST_BASE = 'https://testnet.bitmex.com/api/v1'
 
 
+"""
+ERROR 400: Parameter Error
+
+ERROR 401: Unauthorized
+
+ERROR 403: Access Denied
+
+ERROR 404: Not Found 
+
+
+"""
+
+
 class Bitmex(object):
 
 	def __init__(self, api_key=None, api_secret=None, testing=False):
@@ -28,7 +41,9 @@ class Bitmex(object):
 	def get_announcement(self, **OPargs):
 		"""
 		This is used to get announcements from bitmex.
-		columns - string
+
+		PARAMS:
+		columns		: STRING
 		"""
 		params = {}
 		params.update(OPargs)
@@ -49,8 +64,8 @@ class Bitmex(object):
 		"""
 		This gets your API keys.
 
-		PARAMS
-		reverse - boolean
+		PARAMS:
+		reverse		: BOOLEAN
 		"""
 		params={}
 		params.update(OPargs)
@@ -60,14 +75,14 @@ class Bitmex(object):
 
 	def create_API_key(self, **OPargs):
 		"""
-		This creates an API key.
+		This is used to create and API key.
 
-		PARAMS
-		name - string
-		cidr - string
-		permissions - string
-		enabled - boolean
-		token - string
+		PARAMS:
+		name 		: STRING
+		cidr 		: STRING
+		permissions : STRING
+		enabled 	: BOOLEAN
+		token 		: STRING
 		"""
 		params={}
 		params.update(OPargs)
@@ -79,8 +94,8 @@ class Bitmex(object):
 		"""
 		This deletes an API key.
 
-		PARAMS
-		apiKeyID - string
+		PARAMS:
+		apiKeyID 	: STRING
 		"""
 		params={"apiKeyID":apiKeyID}
 		data = self.api_signed_request("DELETE", "/apiKey", params)
@@ -91,8 +106,8 @@ class Bitmex(object):
 		"""
 		This disables your API key.
 
-		PARAMS
-		apiKeyID - string
+		PARAMS:
+		apiKeyID 	: STRING
 		"""
 		params={"apiKeyID":apiKeyID}
 		data = self.api_signed_request("POST", "/apiKey/disable", params)
@@ -104,7 +119,7 @@ class Bitmex(object):
 		This enables your API key.
 
 		PARAMS:
-		apiKeyID - string
+		apiKeyID 	: STRING
 		"""
 		params={"apiKeyID":apiKeyID}
 		data = self.api_signed_request("POST", "/apiKey/enable", params)
@@ -117,10 +132,10 @@ class Bitmex(object):
 		This is used to get messages.
 		
 		PARAMS:
-		count - double
-		start - double
-		reverse - boolean
-		channelID - double
+		count 		: DOUBLE
+		start 		: DOUBLE
+		reverse 	: BOOLEAN
+		channelID 	: DOUBLE
 		"""
 		params={}
 		params.update(OPargs)
@@ -133,8 +148,8 @@ class Bitmex(object):
 		This is used to send messages.
 		
 		PARAMS:
-		message - string
-		channelID - double
+		message 	: STRING
+		channelID 	: DOUBLE
 		"""
 		params={}
 		params.update(OPargs)
@@ -152,27 +167,25 @@ class Bitmex(object):
 
 	def connected_users(self):
 		"""
-		This gets a list of connected users
+		This gets a list of connected users.
 		"""
 		data = self.api_request("GET", "/chat/connected", {})
 		return(data)
 
 
-	## ComminicationToken. ## TO-DO
-
-
 	## Execution.
 	def get_executions(self, **OPargs):
 		"""
+
 		PARAMS:
-		symbol - string
-		filter - string
-		columns - string
-		count - double
-		start - double
-		reverse - boolean
-		startTime - date-time
-		endTime - date-time
+		symbol 		: STRING
+		filter 		: STRING
+		columns 	: STRING
+		count 		: DOUBLE
+		start 		: DOUBLE
+		reverse 	: BOOLEAN
+		startTime 	: DATE-TIME
+		endTime 	: DATE-TIME
 		"""
 		params={}
 		params.update(OPargs)
@@ -182,15 +195,16 @@ class Bitmex(object):
 
 	def get_all_executions(self, **OPargs):
 		"""
+
 		PARAMS:
-		symbol - string
-		filter - string
-		columns - string
-		count - double
-		start - double
-		reverse - boolean
-		startTime - date-time
-		endTime - date-time
+		symbol 		: STRING
+		filter 		: STRING
+		columns 	: STRING
+		count 		: DOUBLE
+		start 		: DOUBLE
+		reverse 	: BOOLEAN
+		startTime 	: DATE-TIME
+		endTime 	: DATE-TIME
 		"""
 		params={}
 		params.update(OPargs)
@@ -201,15 +215,16 @@ class Bitmex(object):
 	## Funding.
 	def funding_history(self, **OPargs):
 		"""
+
 		PARAMS:
-		symbol - string
-		filter - string
-		columns - string
-		count - double
-		start - double
-		reverse - boolean
-		startTime - date-time
-		endTime - date-time
+		symbol 		: STRING
+		filter 		: STRING
+		columns 	: STRING
+		count 		: DOUBLE
+		start 		: DOUBLE
+		reverse 	: BOOLEAN
+		startTime 	: DATE-TIME
+		endTime 	: DATE-TIME
 		"""
 		params={}
 		params.update(OPargs)
@@ -228,14 +243,16 @@ class Bitmex(object):
 	## Instrument.
 	def get_instruments(self, **OPargs):
 		"""
-		symbol - string
-		filter - string
-		columns - string
-		count - double
-		start - double
-		reverse - boolean
-		startTime - date-time
-		endTime - date-time
+
+		PARAMS:
+		symbol 		: STRING
+		filter 		: STRING
+		columns 	: STRING
+		count 		: DOUBLE
+		start 		: DOUBLE
+		reverse 	: BOOLEAN
+		startTime 	: DATE-TIME
+		endTime 	: DATE-TIME
 		"""
 		params={}
 		params.update(OPargs)
@@ -266,14 +283,16 @@ class Bitmex(object):
 
 	def composite_index(self, **OPargs):
 		"""
-		symbol - string
-		filter - string
-		columns - string
-		count - double
-		start - double
-		reverse - boolean
-		startTime - date-time
-		endTime - date-time
+
+		PARAMS:
+		symbol 		: STRING
+		filter 		: STRING
+		columns 	: STRING
+		count 		: DOUBLE
+		start 		: DOUBLE
+		reverse 	: BOOLEAN
+		startTime 	: DATE-TIME
+		endTime 	: DATE-TIME
 		"""
 		params={}
 		params.update(OPargs)
@@ -292,14 +311,16 @@ class Bitmex(object):
 	## Insurance.
 	def get_insurance(self, **OPargs):
 		"""
-		symbol - string
-		filter - string
-		columns - string
-		count - double
-		start - double
-		reverse - boolean
-		startTime - date-time
-		endTime - date-time
+
+		PARAMS:
+		symbol 		: STRING
+		filter 		: STRING
+		columns 	: STRING
+		count 		: DOUBLE
+		start 		: DOUBLE
+		reverse 	: BOOLEAN
+		startTime 	: DATE-TIME
+		endTime 	: DATE-TIME
 		"""
 		params={}
 		params.update(OPargs)
@@ -311,7 +332,9 @@ class Bitmex(object):
 	## Leaderboard.
 	def get_leaderboard(self, **OPargs):
 		"""
-		method - string
+
+		PARAMS:
+		method 		: STRING
 		"""
 		params={}
 		params.update(OPargs)
@@ -330,14 +353,16 @@ class Bitmex(object):
 	## Liquidation.
 	def get_liquidations(self, **OPargs):
 		"""
-		symbol - string
-		filter - string
-		columns - string
-		count - double
-		start - double
-		reverse - boolean
-		startTime - date-time
-		endTime - date-time
+
+		PARAMS:
+		symbol 		: STRING
+		filter 		: STRING
+		columns 	: STRING
+		count 		: DOUBLE
+		start 		: DOUBLE
+		reverse 	: BOOLEAN
+		startTime 	: DATE-TIME
+		endTime 	: DATE-TIME
 		"""
 		params={}
 		params.update(OPargs)
@@ -355,14 +380,16 @@ class Bitmex(object):
 	## Order.
 	def get_orders(self, **OPargs):
 		"""
-		symbol - string
-		filter - string
-		columns - string
-		count - double
-		start - double
-		reverse - boolean
-		startTime - date-time
-		endTime - date-time
+
+		PARAMS:
+		symbol 		: STRING
+		filter 		: STRING
+		columns 	: STRING
+		count 		: DOUBLE
+		start 		: DOUBLE
+		reverse 	: BOOLEAN
+		startTime 	: DATE-TIME
+		endTime 	: DATE-TIME
 		"""
 		params={}
 		params.update(OPargs)
@@ -372,17 +399,19 @@ class Bitmex(object):
 
 	def amend_order(self, **OPargs):
 		"""
-		orderID - string
-		origClOrdID - string
-		clOrdID - string
-		simpleOrderQty - double
-		orderQty - double
-		simpleLeavesQty - double
-		leavesQty - double
-		price - double
-		stopPx - double
-		pregOffsetValue - double
-		text - string
+
+		PARAMS:
+		orderID 	: STRING
+		origClOrdID : STRING
+		clOrdID 	: STRING
+		simpleOrderQty : DOUBLE
+		orderQty 	: DOUBLE
+		simpleLeavesQty : DOUBLE
+		leavesQty 	: DOUBLE
+		price 		: DOUBLE
+		stopPx 		: DOUBLE
+		pregOffsetValue : DOUBLE
+		text 		: STRING
 		"""
 		params={}
 		params.update(OPargs)
@@ -392,22 +421,24 @@ class Bitmex(object):
 
 	def create_order(self, symbol, **OPargs):
 		"""
-		symbole - string
-		side - string
-		simpleOrderQty - double
-		orderQty - double
-		price - double
-		displayQty - double
-		stopPx - double
-		clOrderID - string
-		clOrderLinkID - string
-		pegOffsetValue - double
-		pegPriceType - string
-		orderType - string
-		timeInForce - string
-		execInst - string
-		contingencyType - string
-		text - string
+
+		PARAMS:
+		symbole 	: STRING
+		side 		: STRING
+		simpleOrderQty : DOUBLE
+		orderQty 	: DOUBLE
+		price 		: DOUBLE
+		displayQty 	: DOUBLE
+		stopPx 		: DOUBLE
+		clOrderID 	: STRING
+		clOrderLinkID : STRING
+		pegOffsetValue : DOUBLE
+		pegPriceType : STRING
+		orderType 	: STRING
+		timeInForce : STRING
+		execInst 	: STRING
+		contingencyType : STRING
+		text 		: STRING
 		"""
 		params={"symbol":symbol}
 		params.update(OPargs)
@@ -417,9 +448,11 @@ class Bitmex(object):
 
 	def cancel_order(self, **OPargs):
 		"""
-		orderID - string
-		clOrdID - string
-		text - string
+
+		PARAMS:
+		orderID 	: STRING
+		clOrdID 	: STRING
+		text 		: STRING
 		"""
 		params={}
 		params.update(OPargs)
@@ -429,9 +462,11 @@ class Bitmex(object):
 
 	def cancel_all_orders(self, **OPargs):
 		"""
-		symbol - string
-		filter - string
-		text - string
+
+		PARAMS:
+		symbol 		: STRING
+		filter 		: STRING
+		text 		: STRING
 		"""
 		params={}
 		params.update(OPargs)
@@ -441,7 +476,9 @@ class Bitmex(object):
 
 	def amend_multi_orders(self, **OPargs):
 		"""
-		orders - string
+
+		PARAMS:
+		orders 		: STRING
 		"""
 		params={}
 		params.update(OPargs)
@@ -451,7 +488,9 @@ class Bitmex(object):
 
 	def create_multi_orders(self, **OPargs):
 		"""
-		orders - string
+
+		PARAMS:
+		orders 		: STRING
 		"""
 		params={}
 		params.update(OPargs)
@@ -461,7 +500,8 @@ class Bitmex(object):
 
 	def cancel_spec_orders(self, timeout):
 		"""
-		timeout - double
+		PARAMS:
+		timeout 	: DOUBLE
 		"""
 		params={"timeout":timeout}
 		data = self.api_signed_request("POST", "/order/cancelAllAfter", params)
@@ -470,8 +510,10 @@ class Bitmex(object):
 
 	def close_position(self, symbol, **OPargs):
 		"""
-		symbol - string
-		price - double
+
+		PARAMS:
+		symbol 		: STRING
+		price 		: DOUBLE
 		"""
 		params={"symbol":symbol}
 		params.update(OPargs)
@@ -483,8 +525,10 @@ class Bitmex(object):
 	## OrderBook.
 	def get_orderbook(self, symbol, **OPargs):
 		"""
-		symbol - string
-		depth - double
+
+		PARAMS:
+		symbol 		: STRING
+		depth 		: DOUBLE
 		"""
 		params={"symbol":symbol}
 		params.update(OPargs)
@@ -496,9 +540,11 @@ class Bitmex(object):
 	## Position.
 	def get_positions(self, **OPargs):
 		"""
-		filter - string
-		columns - string
-		count - double
+
+		PARAMS:
+		filter 		: STRING
+		columns 	: STRING
+		count 		: DOUBLE
 		"""
 		params={}
 		params.update(OPargs)
@@ -508,8 +554,10 @@ class Bitmex(object):
 
 	def allow_isolated_margin(self, symbol, **OPargs):
 		"""
-		symbol - string
-		enabled - boolean
+
+		PARAMS:
+		symbol 		: STRING
+		enabled 	: DOUBLE
 		"""
 		params={"symbol":symbol}
 		params.update(OPargs)
@@ -519,8 +567,10 @@ class Bitmex(object):
 
 	def set_leverage(self, symbol, leverage):
 		"""
-		symbol - string
-		leverage - double
+
+		PARAMS:
+		symbol 		: STRING
+		leverage 	: DOUBLE
 		"""
 		params={"symbol":symbol, "leverage":leverage}
 		data = self.api_signed_request("POST", "/position/leverage", params)
@@ -529,8 +579,10 @@ class Bitmex(object):
 
 	def update_risk(self, symbol, riskLimit):
 		"""
-		symbol - string
-		riskLimit - double
+
+		PARAMS:
+		symbol 		: STRING
+		riskLimit 	: DOUBLE
 		"""
 		params={"symbol":symbol, "riskLimit":riskLimit}
 		data = self.api_signed_request("POST", "/position/riskLimit", params)
@@ -539,8 +591,10 @@ class Bitmex(object):
 
 	def transfer_equity(self, symbol, amount):
 		"""
-		symbol - string
-		amount - double
+
+		PARAMS:
+		symbol 		: STRING
+		amount 		: DOUBLE
 		"""
 		params={"symbol":symbol, "amount":amount}
 		data = self.api_signed_request("POST", "/position/transferMargin", params)
@@ -551,14 +605,16 @@ class Bitmex(object):
 	## Quote.
 	def get_quotes(self, **OPargs):
 		"""
-		symbol - string
-		filter - string
-		columns - string
-		count - double
-		start - double
-		reverse - boolean
-		startTime - date-time
-		endTime - date-time
+
+		PARAMS:
+		symbol 		: STRING
+		filter 		: STRING
+		columns 	: STRING
+		count 		: DOUBLE
+		start 		: DOUBLE
+		reverse 	: BOOLEAN
+		startTime 	: DATE-TIME
+		endTime 	: DATE-TIME
 		"""
 		params={}
 		params.update(OPargs)
@@ -568,16 +624,18 @@ class Bitmex(object):
 
 	def get_bucket_quotes(self, **OPargs):
 		"""
-		binSize - string
-		partial - boolean
-		symbol - string
-		filter - string
-		columns - string
-		count - double
-		start - double
-		reverse - boolean
-		startTime - date-time
-		endTime - date-time
+
+		PARAMS:
+		binSize 	: STRING
+		partial 	: BOOLEAN
+		symbol 		: STRING
+		filter 		: STRING
+		columns 	: STRING
+		count 		: DOUBLE
+		start 		: DOUBLE
+		reverse 	: BOOLEAN
+		startTime 	: DATE-TIME
+		endTime 	: DATE-TIME
 		"""
 		params={}
 		params.update(OPargs)
@@ -589,7 +647,9 @@ class Bitmex(object):
 	## Schema.
 	def get_model_schemata_api(self, **OPargs):
 		"""
-		model - string
+
+		PARAMS:
+		model 		: STRING
 		"""
 		params={}
 		params.update(OPargs)
@@ -608,14 +668,16 @@ class Bitmex(object):
 	## Settlement.
 	def get_settlement(self, **OPargs):
 		"""
-		symbol - string
-		filter - string
-		columns - string
-		count - double
-		start - double
-		reverse - boolean
-		startTime - date-time
-		endTime - date-time
+
+		PARAMS:
+		symbol 		: STRING
+		filter 		: STRING
+		columns 	: STRING
+		count 		: DOUBLE
+		start 		: DOUBLE
+		reverse 	: BOOLEAN
+		startTime 	: DATE-TIME
+		endTime 	: DATE-TIME
 		"""
 		params={}
 		params.update(OPargs)
@@ -650,14 +712,16 @@ class Bitmex(object):
 	## Trade.
 	def get_trade(self, **OPargs):
 		"""
-		symbol - string
-		filter - string
-		columns - string
-		count - double
-		start - double
-		reverse - boolean
-		startTime - date-time
-		endTime - date-time
+
+		PARAMS:
+		symbol 		: STRING
+		filter 		: STRING
+		columns 	: STRING
+		count 		: DOUBLE
+		start 		: DOUBLE
+		reverse 	: BOOLEAN
+		startTime 	: DATE-TIME
+		endTime 	: DATE-TIME
 		"""
 		params={}
 		params.update(OPargs)
@@ -667,16 +731,18 @@ class Bitmex(object):
 
 	def get_bucket_trades(self, **OPargs):
 		"""
-		binSize - string
-		partial - boolean
-		symbol - string
-		filter - string
-		columns - string
-		count - double
-		start - double
-		reverse - boolean
-		startTime - date-time
-		endTime - date-time
+
+		PARAMS:
+		binSize 	: STRING
+		partial 	: BOOLEAN
+		symbol 		: STRING
+		filter 		: STRING
+		columns 	: STRING
+		count 		: DOUBLE
+		start 		: DOUBLE
+		reverse 	: BOOLEAN
+		startTime 	: DATE-TIME
+		endTime 	: DATE-TIME
 		"""
 		params={}
 		params.update(OPargs)
@@ -695,12 +761,14 @@ class Bitmex(object):
 
 	def update_user(self, **OPargs):
 		"""
-		oldPassword - string
-		newPassword - string
-		newPasswordConfirm - string
-		username - string
-		country - string
-		pgpPubKey - string
+
+		PARAMS:
+		oldPassword	: STRING
+		newPassword : STRING
+		newPasswordConfirm : STRING
+		username	: STRING
+		country 	: STRING
+		pgpPubKey 	: STRING
 		"""
 		params={}
 		params.update(OPargs)
@@ -717,7 +785,9 @@ class Bitmex(object):
 
 	def cancel_withdrawal(self, token):
 		"""
-		token - string
+
+		PARAMS:
+		token 		: STRING
 		"""
 		params={"token":token}
 		data = self.api_request("POST", "/user/cancel/Withdrawal", params)
@@ -726,7 +796,9 @@ class Bitmex(object):
 
 	def check_referral_code(self):
 		"""
-		referralCode - string
+
+		PARAMS:
+		referralCode : STRING
 		"""
 		params={}
 		params.update(OPargs)
@@ -736,7 +808,9 @@ class Bitmex(object):
 
 	def get_commission_stats(self):
 		"""
-		token - string
+
+		PARAMS:
+		token 		: STRING
 		"""
 		params={}
 		params.update(OPargs)
@@ -746,8 +820,10 @@ class Bitmex(object):
 
 	def register_communication_token(self, token, platformAgent):
 		"""
-		token - string
-		platformAgent - string
+
+		PARAMS:
+		token 		: STRING
+		platformAgent : STRING
 		"""
 		params={"token":token, "platformAgent":platformAgent}
 		data = self.api_signed_request("GET", "/user/communicationToken", params)
@@ -756,8 +832,10 @@ class Bitmex(object):
 
 	def confirm_email(self, token, **OPargs):
 		"""
-		type - string
-		token - string
+
+		PARAMS:
+		type 		: STRING
+		token 		: STRING
 		"""
 		params={"token":token}
 		params.update(OPargs)
@@ -767,8 +845,10 @@ class Bitmex(object):
 
 	def confirm_tfa(self, token, **OPargs):
 		"""
-		type - string
-		token - string
+
+		PARAMS:
+		type 		: STRING
+		token 		: STRING
 		"""
 		params={"token":token}
 		params.update(OPargs)
@@ -778,7 +858,9 @@ class Bitmex(object):
 
 	def confirm_withdrawal(self, token):
 		"""
-		token - string
+
+		PARAMS:
+		token 		: STRING
 		"""
 		params={"token":token}
 		data = self.api_request("POST", "/user/confirmWithdrawal", params)
@@ -787,7 +869,9 @@ class Bitmex(object):
 
 	def get_deposit_address(self, **OPargs):
 		"""
-		currency - string
+
+		PARAMS:
+		currency 	: STRING
 		"""
 		params={}
 		params.update(OPargs)
@@ -797,8 +881,10 @@ class Bitmex(object):
 
 	def disable_tfa(self, token, **OPargs):
 		"""
-		type - string
-		token - string
+
+		PARAMS:
+		type 		: STRING
+		token 		: STRING
 		"""
 		params={"token":token}
 		params.update(OPargs)
@@ -808,8 +894,10 @@ class Bitmex(object):
 
 	def get_execution_history(self, symbol, timestamp):
 		"""
-		symbol - string
-		timestamp - date-time
+
+		PARAMS:
+		symbol 		: STRING
+		timestamp 	: DATE-TIME
 		"""
 		params={"symbol":symbol, "timestamp":timestamp}
 		data = self.api_signed_request("GET", "/user/executionHistory", params)
@@ -832,7 +920,9 @@ class Bitmex(object):
 
 	def get_margin_status(self, **OPargs):
 		"""
-		currency - string
+
+		PARAMS:
+		currency 	: STRING
 		"""
 		params={}
 		params.update(OPargs)
@@ -842,7 +932,9 @@ class Bitmex(object):
 
 	def get_withdrawal_fee(self, **OPargs):
 		"""
-		currency - string
+
+		PARAMS:
+		currency 	: STRING
 		"""
 		params={}
 		params.update(OPargs)
@@ -852,8 +944,10 @@ class Bitmex(object):
 
 	def save_user_preferences(self, prefs, **OPargs):
 		"""
-		prefs - string
-		overwrite - boolean
+
+		PARAMS:
+		prefs 		: STRING
+		overwrite 	: BOOLEAN
 		"""
 		params={"prefs":prefs}
 		params.update(OPargs)
@@ -863,7 +957,9 @@ class Bitmex(object):
 
 	def request_tfa(self, **OPargs):
 		"""
-		type - string
+
+		PARAMS:
+		type 		: STRING
 		"""
 		params={}
 		params.update(OPargs)
@@ -873,11 +969,13 @@ class Bitmex(object):
 
 	def request_withdrawal(self, currency, amount, address, **OPargs):
 		"""
-		otpToken - string
-		currency - string
-		amount - double
-		address - string
-		fee - double
+
+		PARAMS:
+		otpToken 	: STRING
+		currency 	: STRING
+		amount 		: DOUBLE
+		address 	: STRING
+		fee 		: DOUBLE
 		"""
 		params={"currency":currency, "amount":amount, "address":address}.update(OPargs)
 		data = self.api_signed_request("POST", "/user/requestWithdrawal", params)
@@ -886,7 +984,9 @@ class Bitmex(object):
 
 	def get_wallet(self, **OPargs):
 		"""
-		currency - string
+
+		PARAMS:
+		currency 	: STRING
 		"""
 		params={}
 		params.update(OPargs)
@@ -896,7 +996,9 @@ class Bitmex(object):
 
 	def get_wallet_hist(self, **OPargs):
 		"""
-		currency - string
+
+		PARAMS:
+		currency 	: STRING
 		"""
 		params={}
 		params.update(OPargs)
@@ -906,7 +1008,9 @@ class Bitmex(object):
 
 	def get_wallet_sum(self, **OPargs):
 		"""
-		currency - string
+
+		PARAMS:
+		currency 	: STRING
 		"""
 		params={}
 		params.update(OPargs)
@@ -918,8 +1022,10 @@ class Bitmex(object):
 	## User Event.
 	def get_user_events(self, **OPargs):
 		"""
-		count - double
-		start - double
+
+		PARAMS:
+		count 		: DOUBLE
+		start 		: DOUBLE
 		"""
 		params={}
 		params.update(OPargs)
@@ -958,6 +1064,7 @@ class Bitmex(object):
 		if params != None and params != {}:
 			encodedParams = urlencode(sorted(params.items()))
 			query = "?{0}".format(encodedParams)
+			query = query.replace("%27", "%22")
 
 		nonce = int(round(time.time()) + 5)
 		fullURL = bytes("{0}{1}{2}".format(self.BASE_URL, path, query), 'utf-8')
