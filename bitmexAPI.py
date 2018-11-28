@@ -794,28 +794,29 @@ class Bitmex(object):
 		return(data)
 
 
-	def check_referral_code(self):
+	def check_referral_code(self, refCode):
 		"""
 
 		PARAMS:
 		referralCode : STRING
 		"""
-		params={}
-		params.update(OPargs)
+		params={"referralCode":refCode}
 		data = self.api_request("GET", "/user/checkReferralCode", params)
 		return(data)
 
 
-	def get_commission_stats(self):
+	def get_commission_stats(self, token=None):
 		"""
 
 		PARAMS:
 		token 		: STRING
 		"""
-		params={}
-		params.update(OPargs)
-		data = self.api_signed_request("GET", "/user/commission", params)
-		return(data)
+
+		data = self.api_signed_request("GET", "/user/commission", {})
+		if token == None:
+			return(data)
+		else:
+			return(data["token"])
 
 
 	def register_communication_token(self, token, platformAgent):
