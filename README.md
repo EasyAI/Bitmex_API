@@ -6,6 +6,7 @@ This API follows the calls layedout by the official bitmex documentation at "*ht
 ### Repository Contains:
 - bitmexAPI.py : This contains all the calls for the REST api.
 
+
 ## Usage
 Usage for this is via creating the object for the api within a file and calling the defined functions within the object.
 
